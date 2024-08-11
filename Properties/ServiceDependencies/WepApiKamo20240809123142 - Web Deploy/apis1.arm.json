@@ -1,0 +1,136 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "resourceGroupName": {
+      "type": "string",
+      "defaultValue": "IvysonGroup",
+      "metadata": {
+        "_parameterType": "resourceGroup",
+        "description": "Name of the resource group for the resource. It is recommended to put resources under same resource group for better tracking."
+      }
+    },
+    "resourceGroupLocation": {
+      "type": "string",
+      "defaultValue": "southafricanorth",
+      "metadata": {
+        "_parameterType": "location",
+        "description": "Location of the resource group. Resource groups could have different location than resources."
+      }
+    },
+    "resourceLocation": {
+      "type": "string",
+      "defaultValue": "[parameters('resourceGroupLocation')]",
+      "metadata": {
+        "_parameterType": "location",
+        "description": "Location of the resource. By default use resource group's location, unless the resource provider is not supported there."
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/resourceGroups",
+      "name": "[parameters('resourceGroupName')]",
+      "location": "[parameters('resourceGroupLocation')]",
+      "apiVersion": "2019-10-01"
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "name": "[concat(parameters('resourceGroupName'), 'Deployment', uniqueString(concat('wepapikamo', subscription().subscriptionId)))]",
+      "resourceGroup": "[parameters('resourceGroupName')]",
+      "apiVersion": "2019-10-01",
+      "dependsOn": [
+        "[parameters('resourceGroupName')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "name": "WepApiKamo20240809123142-apim",
+              "type": "Microsoft.ApiManagement/service",
+              "location": "[parameters('resourceLocation')]",
+              "properties": {
+                "publisherEmail": "38924846@mynwu.ac.za",
+                "publisherName": "MyCompany",
+                "notificationSenderEmail": "apimgmt-noreply@mail.windowsazure.com",
+                "hostnameConfigurations": [
+                  {
+                    "type": "Proxy",
+                    "hostName": "wepapikamo20240809123142-apim.azure-api.net",
+                    "encodedCertificate": null,
+                    "keyVaultId": null,
+                    "certificatePassword": null,
+                    "negotiateClientCertificate": false,
+                    "certificate": null,
+                    "defaultSslBinding": true
+                  }
+                ],
+                "publicIPAddresses": [
+                  "20.164.146.196"
+                ],
+                "privateIPAddresses": null,
+                "additionalLocations": null,
+                "virtualNetworkConfiguration": null,
+                "customProperties": {
+                  "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Tls10": "False",
+                  "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Tls11": "False",
+                  "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Protocols.Ssl30": "False",
+                  "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Ciphers.TripleDes168": "False",
+                  "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Tls10": "False",
+                  "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Tls11": "False",
+                  "Microsoft.WindowsAzure.ApiManagement.Gateway.Security.Backend.Protocols.Ssl30": "False",
+                  "Microsoft.WindowsAzure.ApiManagement.Gateway.Protocols.Server.Http2": "False"
+                },
+                "virtualNetworkType": "None",
+                "certificates": null,
+                "disableGateway": false,
+                "apiVersionConstraint": {
+                  "minApiVersion": null
+                }
+              },
+              "sku": {
+                "name": "Developer",
+                "capacity": 1
+              },
+              "apiVersion": "2019-12-01"
+            },
+            {
+              "type": "Microsoft.ApiManagement/service/apis",
+              "name": "WepApiKamo20240809123142-apim/wepapikamo",
+              "properties": {
+                "displayName": "WepApiKamo",
+                "apiRevision": "1",
+                "description": null,
+                "subscriptionRequired": true,
+                "serviceUrl": "https://wepapikamo20240809123142.azurewebsites.net/",
+                "path": "v1",
+                "protocols": [
+                  "https"
+                ],
+                "authenticationSettings": {
+                  "oAuth2": null,
+                  "openid": null
+                },
+                "subscriptionKeyParameterNames": {
+                  "header": "Ocp-Apim-Subscription-Key",
+                  "query": "subscription-key"
+                },
+                "isCurrent": true
+              },
+              "apiVersion": "2019-12-01",
+              "dependsOn": [
+                "WepApiKamo20240809123142-apim"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "_dependencyType": "apis.azure"
+  }
+}

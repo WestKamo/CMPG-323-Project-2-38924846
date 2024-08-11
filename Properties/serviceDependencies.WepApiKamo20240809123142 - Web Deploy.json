@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "apis1": {
+      "apiEndpoint": "https://wepapikamo20240809123142-apim.azure-api.net/v1",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/WepApiKamo20240809123142-apim/apis/wepapikamo",
+      "type": "apis.azure"
+    }
+  }
+}
