@@ -76,6 +76,7 @@ namespace WepApiKamo.Controllers
 
             return NoContent();
         }
+       
 
         // POST: api/JobTelemetries
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -103,6 +104,7 @@ namespace WepApiKamo.Controllers
 
             return NoContent();
         }
+
 
 
         private bool JobTelemetryExists(int id)
