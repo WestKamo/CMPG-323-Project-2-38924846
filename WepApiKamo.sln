@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WepApiKamo", "WepApiKamo.csproj", "{D618DE43-ADE3-4522-BE22-D15741B798C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WepApiKamo", "WepApiKamo.csproj", "{D618DE43-ADE3-4522-BE22-D15741B798C6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentication", "{1F7E0B44-A77A-44C2-ABF1-153242A5F4A8}"
+	ProjectSection(SolutionItems) = preProject
+		ApplicationDbContext.cs = ApplicationDbContext.cs
+		ApplicationUser.cs = ApplicationUser.cs
+		LoginModel.cs = LoginModel.cs
+		RegisterModel.cs = RegisterModel.cs
+		Response.cs = Response.cs
+		UserRoles.cs = UserRoles.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
