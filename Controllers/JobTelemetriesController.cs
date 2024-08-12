@@ -27,6 +27,11 @@ namespace WepApiKamo.Controllers
             return await _context.JobTelemetries.ToListAsync();
         }
 
+        // GET: api/JobTelemetries/GetSavings
+        [HttpGet("GetSavings")]
+
+   
+
         // GET: api/JobTelemetries/5
         [HttpGet("{id}")]
         public async Task<ActionResult<JobTelemetry>> GetJobTelemetry(int id)
@@ -98,6 +103,7 @@ namespace WepApiKamo.Controllers
 
             return NoContent();
         }
+
 
         private bool JobTelemetryExists(int id)
         {
