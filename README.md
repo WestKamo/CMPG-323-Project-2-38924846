@@ -10,6 +10,9 @@ Web Application: A front-end application to manage (create, read, update, delete
 Robotic Process Automation (RPA) Testing: An RPA bot to ensure the web application functions correctly.
 Reporting: Visual reports to display time and cost savings per project and client over time.
 
+#This is the reference list
+https://github.com/WestKamo/CMPG-323-Project-2-38924846/blob/master/Reference%20List.docx
+
 # API Endpoints 
 The RESTful API provides endpoints for managing projects and clients, storing telemetry data, and generating reports on time and cost savings. This section describes the available endpoints and how to use them.
 
